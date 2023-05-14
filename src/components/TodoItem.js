@@ -1,14 +1,14 @@
-import { format } from 'date-fns';
-import { motion } from 'framer-motion';
-import toast from 'react-hot-toast';
-import React, { useEffect, useState } from 'react';
-import { MdDelete, MdEdit } from 'react-icons/md';
-import { useDispatch } from 'react-redux';
-import { deleteTodo, updateTodo } from '../slices/todoSlice';
-import styles from '../styles/modules/todoItem.module.scss';
-import { getClasses } from '../utils/getClasses';
-import CheckButton from './CheckButton';
-import TodoModal from './TodoModal';
+import { format } from "date-fns";
+import { motion } from "framer-motion";
+import toast from "react-hot-toast";
+import React, { useEffect, useState } from "react";
+import { MdDelete, MdEdit } from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { deleteTodo, updateTodo } from "../slices/todoSlice";
+import styles from "../styles/modules/todoItem.module.scss";
+import { getClasses } from "../utils/getClasses";
+import CheckButton from "./CheckButton";
+import TodoModal from "./TodoModal";
 
 const child = {
   hidden: { y: 20, opacity: 0 },
@@ -24,7 +24,7 @@ function TodoItem({ todo }) {
   const [updateModalOpen, setUpdateModalOpen] = useState(false);
 
   useEffect(() => {
-    if (todo.status === 'complete') {
+    if (todo.status === "complete") {
       setChecked(true);
     } else {
       setChecked(false);
@@ -34,13 +34,13 @@ function TodoItem({ todo }) {
   const handleCheck = () => {
     setChecked(!checked);
     dispatch(
-      updateTodo({ ...todo, status: checked ? 'incomplete' : 'complete' })
+      updateTodo({ ...todo, status: checked ? "incomplete" : "complete" })
     );
   };
 
   const handleDelete = () => {
     dispatch(deleteTodo(todo.id));
-    toast.success('Todo Deleted Successfully');
+    toast.success("Todo Deleted Successfully");
   };
 
   const handleUpdate = () => {
@@ -58,12 +58,12 @@ function TodoItem({ todo }) {
               <p className={styles.todoDescr}>{todo.description}</p>
               <div className={styles.timesContainer}>
                 <p className={styles.time}>
-                  Created:{' '}
-                  {format(new Date(todo.created_time), 'p, MM/dd/yyyy')}
+                  Created Date:{" "}
+                  {format(new Date(todo.created_time), "p, MM/dd/yyyy")}
                 </p>
                 <p className={styles.time}>
-                  Updated:{' '}
-                  {format(new Date(todo.updated_time), 'p, MM/dd/yyyy')}
+                  Updated Date:{" "}
+                  {format(new Date(todo.updated_time), "p, MM/dd/yyyy")}
                 </p>
               </div>
             </div>
